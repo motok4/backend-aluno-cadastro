@@ -1,0 +1,21 @@
+spring:
+  http:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/front
+    username: tales
+    password: 123456
+  jpa:
+    database: MYSQL
+    generate-ddl: true
+    ddl-auto: create-drop
+
+
+system:
+  uploadPath: upload
+
+server:
+  port: 8100
