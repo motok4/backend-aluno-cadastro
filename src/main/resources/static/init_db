@@ -1,0 +1,76 @@
+#/bin/bash
+curl -i \
+    -H "Accept: */*" \
+    -H "X-HTTP-Method-Override: POST" \
+    -H "Content-Type: application/json"\
+    -X POST -d '{
+        "name":"Tales Mota Machado",
+        "cell":"31995873181",
+        "course":"Computação",
+        "email":"talesmmachado@gmail.com"
+        }'\
+    http://localhost:8100/aluno/add
+
+curl -i \
+    -H "Accept: */*" \
+    -H "X-HTTP-Method-Override: POST" \
+    -H "Content-Type: application/json"\
+    -X POST -d '{
+        "name":"Sarah Melo Barros",
+        "cell":"6352256599",
+        "course":"Computação",
+        "email":"SarahMeloBarros@armyspy.com"
+        }'\
+    http://localhost:8100/aluno/add
+
+
+curl -i \
+    -H "Accept: */*" \
+    -H "X-HTTP-Method-Override: POST" \
+    -H "Content-Type: application/json"\
+    -X POST -d '{
+        "name":"Amanda Barbosa Goncalves",
+        "cell":"4167166366",
+        "course":"Computação",
+        "email":"AmandaBarbosaGoncalves@dayrep.com"
+        }'\
+    http://localhost:8100/aluno/add
+
+
+curl -i \
+    -H "Accept: */*" \
+    -H "X-HTTP-Method-Override: POST" \
+    -H "Content-Type: application/json"\
+    -X POST -d '{
+        "name":"Diogo Fernandes Gomes",
+        "cell":"1222142978",
+        "course":"Computação",
+        "email":"DiogoFernandesGomes@teleworm.us"
+        }'\
+    http://localhost:8100/aluno/add
+
+
+curl -i \
+    -H "Accept: */*" \
+    -H "X-HTTP-Method-Override: POST" \
+    -H "Content-Type: application/json"\
+    -X POST -d '{
+        "name":"Vitor Castro Martins",
+        "cell":"8477678456",
+        "course":"Computação",
+        "email":"VitorCastroMartins@dayrep.com"
+        }'\
+    http://localhost:8100/aluno/add
+
+#####DISCIPLINA
+
+curl -i \
+    -H "Accept: */*" \
+    -H "X-HTTP-Method-Override: POST" \
+    -H "Content-Type: application/json"\
+    -X POST -d '{
+        "code":"BCC001",
+        "name":"Introdução ao Latex",
+        "students":[2,3,4,5,6]
+        }'\
+    http://localhost:8100/disciplina/add

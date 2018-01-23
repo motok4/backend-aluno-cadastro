@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table
@@ -27,21 +28,34 @@ public class Aluno {
 
     @Column
     @NotNull
-    private Integer cell;
+    private Long cell;
 
     @Column
     @NotNull
     @NotEmpty
     private String course;
 
-    @ManyToOne
-    @JoinColumn(name="disciplina_id")
-    private Disciplina disciplina;
+    @Column
+    @NotNull
+    @NotEmpty
+    private String state;
+
+    @Column
+    @NotNull
+    @NotEmpty
+    private String city;
+
+
+
+
+
+    @ManyToMany(mappedBy = "alunos")
+    private List<Disciplina> disciplinas;
 
 
     public Aluno() { super(); }
 
-    public Aluno(Integer id, String name, String email, Integer cell, String course) {
+    public Aluno(Integer id, String name, String email, Long cell, String course) {
         super();
         this.id = id;
         this.name = name;
@@ -74,11 +88,11 @@ public class Aluno {
         this.email = email;
     }
 
-    public Integer getCell() {
+    public Long getCell() {
         return cell;
     }
 
-    public void setCell(Integer cell) {
+    public void setCell(Long cell) {
         this.cell = cell;
     }
 
@@ -90,11 +104,27 @@ public class Aluno {
         this.course = course;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public List<Disciplina> getDisciplina() {
+        return disciplinas;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setDisciplina(List<Disciplina> disciplina) {
+        this.disciplinas = disciplina;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

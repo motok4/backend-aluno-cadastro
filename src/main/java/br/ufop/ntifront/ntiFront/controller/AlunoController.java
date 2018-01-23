@@ -3,6 +3,9 @@ package br.ufop.ntifront.ntiFront.controller;
 import br.ufop.ntifront.ntiFront.entity.Aluno;
 import br.ufop.ntifront.ntiFront.repository.AlunoRepository;
 import br.ufop.ntifront.ntiFront.service.AlunoService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +21,26 @@ public class AlunoController {
     private AlunoService alunoService;
 
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ApiOperation(value = "Lista de todos alunos cadastrados", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
     public List<Aluno> getAll() {
         return alunoService.findAll();
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ApiOperation(value = "Adiciona um usuário", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
     public ResponseEntity<Aluno> add(@RequestBody @Valid Aluno aluno) {
         try{
             Aluno _aluno = alunoService.add(aluno);
@@ -33,7 +50,14 @@ public class AlunoController {
 
         }
     }
-    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
+    @RequestMapping(value = "", method = RequestMethod.PUT)
+    @ApiOperation(value = "Edita um usuário", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
     public ResponseEntity<Aluno> edit(@RequestBody @Valid Aluno aluno) {
         try{
             Aluno _aluno = alunoService.find(aluno.getId());
@@ -47,7 +71,14 @@ public class AlunoController {
         }
     }
 
-    @RequestMapping(value="/remove/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    @ApiOperation(value = "Deleta um usuário", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
     public ResponseEntity remove(@PathVariable("id") Integer id){
         try{
             alunoService.delete(id);
@@ -57,4 +88,18 @@ public class AlunoController {
         }
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ApiOperation(value = "Busca um usuário", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
+    public Aluno getAluno(@PathVariable("id") Integer id) {
+        return alunoService.findOne(id);
+    }
+
 }
+
+

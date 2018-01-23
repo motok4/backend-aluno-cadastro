@@ -21,9 +21,17 @@ public class Disciplina {
     private String code;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "disciplina",  cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "disciplina",  cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name = "disciplinas_alunos",
+            joinColumns = @JoinColumn(name = "disciplina_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "aluno_id",
+                    referencedColumnName = "id"))
     private List<Aluno> alunos;
 
+    @Transient
+    private List<Integer> students;
 
     public Disciplina() { super(); }
 
@@ -64,5 +72,13 @@ public class Disciplina {
 
     public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
+    }
+
+    public List<Integer> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Integer> students) {
+        this.students = students;
     }
 }

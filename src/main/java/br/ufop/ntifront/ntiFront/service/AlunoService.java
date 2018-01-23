@@ -32,5 +32,8 @@ public class AlunoService {
     public void save(Aluno aluno){
         alunoRepository.save(aluno);
     }
+    public Aluno findOne(Integer id){
+        return alunoRepository.findOne(id);
+    }
 
 }
